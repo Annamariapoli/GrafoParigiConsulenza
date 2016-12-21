@@ -1,6 +1,7 @@
 package application;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import bean.Fermata;
@@ -50,6 +51,17 @@ public class SampleController {
     		return;
     	}
     	
+    	model.buildGraph();
+    	List<Fermata> fermateIntermedie = model.getCamminoMinimo(f1, f2);
+    	if(fermateIntermedie.size()==0){
+    		txtResult.appendText("Non esiste un cammino tra le fermate selezionate !\n");
+    		return;
+    	}
+    	    else{ //visualizzo il tempo di percorrenza //30 secondi per fermata
+    		
+    		txtResult.appendText(fermateIntermedie.toString());
+    		txtResult.appendText("Il tempo di percorrenza è : "+model.getTempoDelCammino(f1, f2)+ " secondi.");
+    	}
 
     }
 
